@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+    <param name="plugin-icon">images/pluginIcon.png</param>
+    <param name="plugin-logo">images/pluginLogo.png</param>
+  </plugin-info>
+  <!-- add our i18n resource -->
+  <resource type="i18n" name="i18n" location="jira-menu-items"/>
+  <!-- add our web resources -->
+  <web-resource key="jira-menu-items-resources" name="jira-menu-items Web Resources">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <resource type="download" name="jira-menu-items.css" location="/css/jira-menu-items.css"/>
+    <resource type="download" name="jira-menu-items.js" location="/js/jira-menu-items.js"/>
+    <resource type="download" name="images/" location="/images"/>
+    <context>jira-menu-items</context>
+  </web-resource>
+  <web-item name="Security Incident" i18n-name-key="security-incident.name" key="security-incident" section="system.top.navigation.bar" weight="1000">
+    <description key="security-incident.description">The Security Incident Plugin</description>
+    <label key="security-incident.label"></label>
+    <link linkId="security-incident-link">https://jira.seavus.com/jira/secure/CreateIssueDetails!init.jspa?pid=11430&amp;issuetype=11000</link>
+    <styleClass>aui-button aui-button-primary aui-style</styleClass>
+    <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserLoggedInCondition"/>
+  </web-item>
+  <web-item key="seavus_links_link" name="Link on Seavus Links Main Section" section="system.top.navigation.bar" weight="100">
+		<label>Seavus Service Desk</label>
+		<link linkId="seavus_links_link">http://servicedesk.seavus.com</link>
+		<styleClass>aui-button aui-button-primary aui-style</styleClass>
+		<condition class="com.atlassian.jira.plugin.webfragment.conditions.UserLoggedInCondition"/>
+	</web-item>
+</atlassian-plugin>
